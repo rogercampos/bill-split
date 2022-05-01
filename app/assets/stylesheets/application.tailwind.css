@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.with-errors label {
+  @apply text-red-500;
+}
+
+.with-errors span.error-message {
+  @apply text-sm text-red-500;
+}

@@ -1,0 +1,19 @@
+development:
+  adapter: postgresql
+  encoding: utf8
+  host: <%= ENV['PG_HOST'] %>
+  username: <%= ENV['PG_USER'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
+  port: <%= ENV['PG_PORT'] %>
+  database: bill_split
+  pool: 20
+
+test:
+  adapter: postgresql
+  encoding: utf8
+  host: <%= ENV['PG_HOST'] %>
+  username: <%= ENV['PG_USER'] %>
+  password: <%= ENV['PG_PASSWORD'] %>
+  port: <%= ENV['PG_PORT'] %>
+  database: bill_split_test
+  pool: 20
