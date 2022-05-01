@@ -1,0 +1,12 @@
+- id = SecureRandom.hex
+div class="mb-4" id=id
+  div class="flex gap-2"
+    div class="w-1/2"
+      = f.text_field "persons[][name]", value: (person["name"] if local_assigns.key?(:person)), class: "w-full", data: { controller: "submit-on-change"}
+    div class="w-1/4"
+      = f.text_field "persons[][paid]", value: (person["paid"] if local_assigns.key?(:person)), class: "w-full", data: { controller: "submit-on-change"}
+    div class="w-1/4"
+      = f.select "persons[][pays_for_people]", options_for_select([1,2,3,4,5,6,7,8,9,10], (person["pays_for_people"] if local_assigns.key?(:person))), {}, { class: "w-full", data: { controller: "submit-on-change"} }
+
+  button formaction=remove_person_bills_path(id: id) class="text-red-500 hover:text-red-700 underline text-xs"
+    | Remove

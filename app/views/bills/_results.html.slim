@@ -1,0 +1,32 @@
+- results = Result.new(bill)
+
+p class="text-lg my-4 font-bold text-gray-700"
+  ' Each person to pay:
+  span class="text-xl text-green-600" = amount_badge results.amount_per_person
+
+p class="my-4 italic text-gray-500 text-lg font-light" Total compensations to make
+
+ul class="list-disc list-inside text-gray-700"
+  - results.absolute_balance_per_person.each do |person, amount|
+    - next if amount.round(2).zero?
+    - if amount > 0
+      li == "#{person_badge person} should pay #{amount_badge amount}"
+    - else
+      li == "#{person_badge person} should receive #{amount_badge amount}"
+
+p class="my-4 italic text-gray-500 text-lg font-light" Proposed distribution
+
+ul class="list-disc list-inside text-gray-700"
+  - results.calculate.each do |name, data|
+    - next if data.empty?
+    - data.each do |person, amount|
+      - next if amount.round(2).zero?
+      li == "#{person_badge name} should pay #{amount_badge(amount)} to #{person}"
+
+
+hr class="my-4"
+
+div class="flex items-center gap-1"
+  = link_to "Share this page", shared_bill_path(bill.public_token), class: "underline text-blue-500 hover:text-blue-400 ", target: "_blank"
+  = "|"
+  = button_to "Remove current bill", discard_bills_path, class: "underline text-red-500 hover:text-red-400", form: { data: { turbo_confirm: "Sure?" }, turbo: false }

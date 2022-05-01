@@ -1,0 +1,21 @@
+
+div class="mx-4"
+  = form_with url: bills_url, html: { autocomplete: "off" }, id: "form" do |f|
+    div class="flex gap-2 mb-4"
+      div class="w-1/2 uppercase font-bold text-gray-600"
+        | Name
+      div class="w-1/4 uppercase font-bold text-gray-600" Has paid
+      div class="w-1/4 uppercase font-bold text-gray-600" Pays for
+
+    div id="persons"
+      - @bill.data.each do |person|
+        = render 'person', f: f, person: person
+
+      = render 'person', f: f
+
+
+  = button_to "Add one more person", add_person_bills_path, class: "px-2 py-1 text-white bg-green-600 hover:bg-green-400 rounded"
+
+  div id="results"
+    - if @bill.persisted?
+      = render 'results', bill: @bill
