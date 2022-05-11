@@ -39,7 +39,6 @@ class BillsController < ApplicationController
   end
 
   def discard
-    load_bill&.destroy
     session[:current_bill_id] = nil
     redirect_to root_path
   end
